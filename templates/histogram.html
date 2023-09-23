@@ -1,0 +1,47 @@
+{% extends "layout.html" %} {% block body %}
+<div class="container py-4">
+    <div class="row">
+        {% if file_paths[2] %}
+        <form id="" action="{{ url_for('normal') }}" method="POST" enctype="multipart/form-data">
+            <button type="submit" class="btn btn-primary">&lt; Kembali</button>
+        </form>
+        <div class="col-md-4 text-center">
+            <h3 class="mb-5">Image RGB</h3>
+            <img class="img-fluid" src="{{ url_for('static', filename='img/img_now.jpg') }}" alt="image here">
+        </div>
+        <div class="col-md-8 text-center">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Red Histogram</h3>
+                    <img class="img-fluid" src="{{ url_for('static', filename=file_paths[0]) }}" alt="image here">
+                </div>
+                <div class="col-md-6">
+                    <h3>Green Histogram</h3>
+                    <img class="img-fluid" src="{{ url_for('static', filename=file_paths[1]) }}" alt="image here">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Blue Histogram</h3>
+                    <img class="img-fluid" src="{{ url_for('static', filename=file_paths[2]) }}" alt="image here">
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <form id="" action="{{ url_for('grayscale') }}" method="POST" enctype="multipart/form-data">
+            <button type="submit" class="btn btn-primary">&lt; Kembali</button>
+        </form>
+        <div class="col-md-6 text-center">
+            <h3 class="mb-5">Image Greyscaled</h3>
+            <img class="img-fluid" src="{{ url_for('static', filename='img/img_now.jpg') }}" alt="image here">
+        </div>
+        <div class="col-md-6 text-center">
+            <h3>Black Histogram</h3>
+            <img class="img-fluid" src="{{ url_for('static', filename=file_paths[0]) }}" alt="image here">
+        </div>
+        {% endif %}
+    </div>
+</div>
+<style>
+</style>
+{% endblock %}

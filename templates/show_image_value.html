@@ -1,0 +1,317 @@
+{% extends "layout.html" %} {% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 mt-3">
+            <h3 class="fw-semibold">Menu</h3>
+            <div class="overflow-y-auto p-3" style="max-height: calc(100vh - 120px);">
+                <div class="card border-info">
+                    <div class="card-header fw-semibold fs-5">
+                      Analisis Gambar
+                    </div>
+                    <div class="card-body">
+                      <form id="" action="{{ url_for('histogram_rgb') }}" method="POST" enctype="multipart/form-data">
+                          <div class="d-grid gap-1">
+                              <button type="submit" class="btn btn-primary">Histogram</button>
+                          </div>
+                      </form>
+                    </div>
+                </div>
+                <div class="card border-info mt-3">
+                    <div class="card-header fw-semibold fs-5">
+                      RGB
+                    </div>
+                    <div class="card-body">
+                      <form id="" action="{{ url_for('show_image_values') }}" method="POST" enctype="multipart/form-data">
+                          <div class="d-grid gap-1">
+                              <button type="submit" class="btn btn-primary">RGB</button>
+                          </div>
+                      </form>
+                    </div>
+                </div>
+                <div class="card border-info mt-3">
+                    <div class="card-header fw-semibold fs-5">
+                        Puzzle
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-md-6">
+                            <form id="" action="{{ url_for('crop_puzzle') }}" method="POST" enctype="multipart/form-data">
+                                <div class="p-2">
+                                    <h6>Ukuran Puzzle</h6>
+                                    <input class="form-control" type="number" name="crop_size" placeholder="0">
+                                </div>
+                                <div class="p-2">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Crop to Puzzle</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <form id="" action="{{ url_for('random_puzzle') }}" method="POST" enctype="multipart/form-data">
+                                <div class="p-2">
+                                    <h6>Ukuran Puzzle</h6>
+                                    <input class="form-control" type="number" name="random_size" placeholder="0">
+                                </div>
+                                <div class="p-2">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Random Puzzle</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-info mt-3">
+                    <div class="card-header fw-semibold fs-5">
+                      Umum
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('normal') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Normal</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('grayscale') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Grayscale</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('zoomin') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Zoom In</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('zoomout') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Zoom Out</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-info mt-3">
+                    <div class="card-header fw-semibold fs-5">
+                      Pergeseran
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <form id="" action="{{ url_for('move_left') }}" method="POST" enctype="multipart/form-data">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Geser Kiri</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="p-2">
+                                <form id="" action="{{ url_for('move_right') }}" method="POST" enctype="multipart/form-data">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Geser Kanan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <form id="" action="{{ url_for('move_up') }}" method="POST" enctype="multipart/form-data">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Geser Atas</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="p-2">
+                                <form id="" action="{{ url_for('move_down') }}" method="POST" enctype="multipart/form-data">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Geser Bawah</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-info mt-3">
+                    <div class="card-header fw-semibold fs-5">
+                      Penerangan
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <form id="" action="{{ url_for('brightness_multiplication') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Terang (*)</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="p-2">
+                                <form id="" action="{{ url_for('brightness_division') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Gelap (/)</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-2">
+                                <form id="" action="{{ url_for('brightness_addition') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Terang (+)</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="p-2">
+                                <form id="" action="{{ url_for('brightness_substraction') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Gelap (-)</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-info mt-3">
+                    <div class="card-header fw-semibold fs-5">
+                        Pemrosesan Gambar
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-md-12">
+                            <div class="p-2">
+                                <form id="" action="{{ url_for('histogram_equalizer') }}" method="POST" enctype="multipart/form-data">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Histogram Equalizer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-info mt-3">
+                    <div class="card-header fw-semibold fs-5">
+                        Filter Gambar
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-md-5">
+                            <div class="p-2">
+                                <form id="" action="{{ url_for('edge_detection') }}" method="POST" enctype="multipart/form-data">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Edge Detection</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-2">
+                                <form id="" action="{{ url_for('blur') }}" method="POST" enctype="multipart/form-data">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Blur</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-2">
+                                <form id="" action="{{ url_for('sharpening') }}" method="POST" enctype="multipart/form-data">
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Sharpening</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-info mt-3">
+                    <div class="card-header fw-semibold fs-5">
+                        Segmentation
+                    </div>
+                    <div class="card-body row">
+                        <form id="" action="{{ url_for('thresholding') }}" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="p-2">
+                                        <h6>Batas Bawah</h6>
+                                        <input class="form-control" type="number" name="lower_thres" placeholder="0-255">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-2">
+                                        <h6>Batas Atas</h6>
+                                        <input class="form-control" type="number" name="upper_thres" placeholder="0-255">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-2">
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary">Thresholding</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 mt-3">
+            <div class="container">
+                <h5>Nilai Pixel</h5>
+                <h6>Width: {{ width }}</h6>
+                <h6>Height: {{ height }}</h6>
+                <div class="row" style="margin-bottom: 20px;">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">R</th>
+                                <th scope="col">G</th>
+                                <th scope="col">B</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pixel in pixel_values %}
+                                <tr>
+                                    <th scope="row">{{ loop.index }}</th>
+                                    <td>{{ pixel[0] }}</td>
+                                    <td>{{ pixel[1] }}</td>
+                                    <td>{{ pixel[2] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript function to display the image size
+    function showImageSize() {
+            const image = new Image();
+            image.src = "static/img/img_now.jpg"; // Replace with the actual path
+
+            image.onload = function() {
+                const width = image.width;
+                const height = image.height;
+                const imageSize = document.getElementById('imageSize');
+                imageSize.textContent = `Image size: ${width} x ${height}`;
+            };
+        }
+
+    // Call the function to display the image size
+    showImageSize();
+</script>
+
+{% endblock %}

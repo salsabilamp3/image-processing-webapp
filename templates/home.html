@@ -1,0 +1,33 @@
+{% extends "layout.html" %} {% block body %}
+<div class="container-fluid p-3">
+    <div class="container text-center py-4">
+        <h1 class="fw-semibold">Image Processing</h1>
+        <p class="lead">Upload gambar .jpg / .jpeg</p>
+        <form id="" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+            <div class="row mt-5 px-5">
+                <div class="col-10">
+                    <div class="mb-3 ms-5">
+                        <input class="form-control" name="file" type="file" id="inputGroupFile04" accept=".jpg, .jpeg" onchange="checkFile()">
+                    </div>
+                </div>
+                <div class="col-1">
+                    <button id="upload-button" type="submit" class="btn btn-primary" disabled>Upload</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function checkFile() {
+        const fileInput = document.getElementById('inputGroupFile04');
+        const uploadButton = document.getElementById('upload-button');
+
+        if (fileInput.files.length > 0) {
+            uploadButton.removeAttribute('disabled');
+        } else {
+            uploadButton.setAttribute('disabled', 'disabled');
+        }
+    }
+</script>
+{% endblock %}
