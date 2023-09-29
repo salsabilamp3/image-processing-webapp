@@ -230,5 +230,104 @@ def show_image_values():
     # Mengirimkan nilai-nilai tersebut ke template HTML
     return render_template("show_image_value.html", pixel_values=pixel_values, width=width, height=height)
 
+@app.route('/identity_filter', methods=['POST'])
+@nocache
+def identity_filter():
+    image_processing.identity_filter()
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/blur2', methods=['POST'])
+@nocache
+def blur2():
+    image_processing.blur2()
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/blur_cv', methods=['POST'])
+@nocache
+def blur_cv():
+    image_processing.blur_cv()
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/gaussianblur_5', methods=['POST'])
+@nocache
+def gaussianblur_5():
+    image_processing.gaussianblur_5()
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/gaussianblur_25', methods=['POST'])
+@nocache
+def gaussianblur_25():
+    image_processing.gaussianblur_25()
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/median_5', methods=['POST'])
+@nocache
+def median_5():
+    image_processing.median_5()
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/median_25', methods=['POST'])
+@nocache
+def median_25():
+    image_processing.median_25()
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/sharp', methods=['POST'])
+@nocache
+def sharp():
+    image_processing.sharp()
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/bilateral_filter', methods=['POST'])
+@nocache
+def bilateral_filter():
+    image_processing.bilateral_filter()
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/zero_padding', methods=['POST'])
+@nocache
+def zero_padding():
+    image_processing.zero_padding()
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/lowpass_filter', methods=['POST'])
+@nocache
+def lowpass_filter():
+    image_processing.lowFilterPass()
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/highpass_filter', methods=['POST'])
+@nocache
+def highpass_filter():
+    image_processing.highFilterPass()
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/bandpass_filter', methods=['POST'])
+@nocache
+def bandpass_filter():
+    image_processing.bandFilterPass()
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/custom_lowpass_filter', methods=['POST'])
+@nocache
+def custom_lowpass_filter():
+    size = int(request.form['size'])
+    image_processing.custom_lowpass_filter(size)
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/custom_highpass_filter', methods=['POST'])
+@nocache
+def custom_highpass_filter():
+    size = int(request.form['size'])
+    image_processing.custom_highpass_filter(size)
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
+@app.route('/custom_bandpass_filter', methods=['POST'])
+@nocache
+def custom_bandpass_filter():
+    size = int(request.form['size'])
+    image_processing.custom_bandpass_filter(size)
+    return render_template("uploaded.html", file_path="img/img_now.jpg")
+
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

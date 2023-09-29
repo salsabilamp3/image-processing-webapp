@@ -348,14 +348,12 @@ def histogram_rgb():
             plt.savefig(f'static/img/{data[0]}_histogram.jpg', dpi=300)
             plt.clf()
 
-
 def df(img):  # to make a histogram (count distribution frequency)
     values = [0]*256
     for i in range(img.shape[0]):
         for j in range(img.shape[1]):
             values[img[i, j]] += 1
     return values
-
 
 def cdf(hist):  # cumulative distribution frequency
     cdf = [0] * len(hist)  # len(hist) is 256
@@ -367,14 +365,12 @@ def cdf(hist):  # cumulative distribution frequency
     cdf = [ele*255/cdf[-1] for ele in cdf]
     return cdf
 
-
 def histogram_equalizer():
     img = cv2.imread('static\img\img_now.jpg', 0)
     my_cdf = cdf(df(img))
     # use linear interpolation of cdf to find new pixel values. Scipy alternative exists
     image_equalized = np.interp(img, range(0, 256), my_cdf)
     cv2.imwrite('static/img/img_now.jpg', image_equalized)
-
 
 def threshold(lower_thres, upper_thres):
     img = Image.open("static/img/img_now.jpg")
@@ -439,7 +435,6 @@ def random_puzzle(random_size):
 
     return puzzle_pieces
 
-
 def randomize_puzzle_order(puzzle_pieces):
     # Shuffle the order of the puzzle pieces
     random.shuffle(puzzle_pieces)
@@ -459,3 +454,150 @@ def get_image_values(image_path):
     except Exception as e:
         print(f"Error: {e}")
         return [], None, None
+
+def identity_filter():
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    kernel = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
+    identity = cv2.filter2D(src=img, ddepth=-1, kernel=kernel)
+    new_img = Image.fromarray(identity)
+    new_img.save("static/img/img_now.jpg")
+
+def blur2():
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    kernel = np.ones((3, 3), np.float32) / 9
+    blur = cv2.filter2D(src=img, ddepth=-1, kernel=kernel)
+    new_img = Image.fromarray(blur)
+    new_img.save("static/img/img_now.jpg")
+
+def blur_cv():
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    cv_blur = cv2.blur(src=img, ksize=(5,5))
+    new_img = Image.fromarray(cv_blur)
+    new_img.save("static/img/img_now.jpg")
+
+def gaussianblur_5():
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    cv_gaussianblur_5 = cv2.GaussianBlur(src=img,ksize=(5,5),sigmaX=0)
+    new_img = Image.fromarray(cv_gaussianblur_5)
+    new_img.save("static/img/img_now.jpg")
+
+def gaussianblur_25():
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    cv_gaussianblur_25 = cv2.GaussianBlur(src=img,ksize=(25,25),sigmaX=0)
+    new_img = Image.fromarray(cv_gaussianblur_25)
+    new_img.save("static/img/img_now.jpg")
+
+def median_5():
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    cv_median_5 = cv2.medianBlur(src=img,ksize=5)
+    new_img = Image.fromarray(cv_median_5)
+    new_img.save("static/img/img_now.jpg")
+
+def median_25():
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    cv_median_25 = cv2.medianBlur(src=img,ksize=25)
+    new_img = Image.fromarray(cv_median_25)
+    new_img.save("static/img/img_now.jpg")
+
+def sharp():
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+    sharp = cv2.filter2D(src=img, ddepth=-1, kernel=kernel)
+    new_img = Image.fromarray(sharp)
+    new_img.save("static/img/img_now.jpg")
+
+def bilateral_filter():
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    bf = cv2.bilateralFilter(src=img,d=9,sigmaColor=75,sigmaSpace=75)
+    new_img = Image.fromarray(bf)
+    new_img.save("static/img/img_now.jpg")
+
+def zero_padding():
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    image = cv2.copyMakeBorder(img, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=0)
+    new_img = Image.fromarray(image)
+    new_img.save("static/img/img_now.jpg")
+
+def lowFilterPass():
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    lowFilter = np.ones((3,3),np.float32)/9
+    lowFilterImage = cv2.filter2D(img,-1,lowFilter)
+    lowFilterImage = cv2.filter2D(img,-1,lowFilter)
+    new_img = Image.fromarray(lowFilterImage)
+    new_img.save("static/img/img_now.jpg")
+
+def highFilterPass():
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    highFilter = np.array([[-1,-1,-1],[-1,8,-1],[-1,-1,-1]])
+    highFilterImage = cv2.filter2D(img,-1,highFilter)
+    new_img = Image.fromarray(highFilterImage)
+    new_img.save("static/img/img_now.jpg")
+
+def bandFilterPass():
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    bandFilter = np.array([[0,-1,0],[-1,5,-1],[0,-1,0]])
+    bandFilterImage = cv2.filter2D(img,-1,bandFilter)
+    new_img = Image.fromarray(bandFilterImage)
+    new_img.save("static/img/img_now.jpg")
+
+def custom_lowpass_filter(size):
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    while True:
+        lowfilter = np.random.rand(size, size)
+        lowfilter += np.abs(np.min(lowfilter))
+        scaling_factor = 1.0 / np.sum(lowfilter)
+        lowfilter *= scaling_factor
+        if np.isclose(np.sum(lowfilter), 1.0):
+            break
+
+    total = np.sum(lowfilter)
+    print(lowfilter)
+    print(total)
+    lowFilterImage = cv2.filter2D(img,-1,lowfilter)
+    new_img = Image.fromarray(lowFilterImage)
+    new_img.save("static/img/img_now.jpg")
+
+def custom_highpass_filter(size):
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+
+    while True:
+        kernel = np.random.randint(-size, size, size=(size, size), dtype=np.int16)
+        kernel_sum = np.sum(kernel)
+        if kernel_sum == 0:
+            break
+    
+    highFilterImage = cv2.filter2D(img,-1,kernel)
+    print(kernel)
+    print(kernel_sum)
+    new_img = Image.fromarray(highFilterImage)
+    new_img.save("static/img/img_now.jpg")
+
+def custom_bandpass_filter(size):
+    img_path = "static/img/img_now.jpg"
+    img = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
+    while True:
+        kernel = np.random.randint(-size, size, size=(size, size), dtype=np.int16)
+        kernel_sum = np.sum(kernel)
+        if kernel_sum > 0:
+            break
+
+    bandFilterImage = cv2.filter2D(img,-1,kernel)
+    print(kernel)
+    print(kernel_sum)
+    new_img = Image.fromarray(bandFilterImage)
+    new_img.save("static/img/img_now.jpg")

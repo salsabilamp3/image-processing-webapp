@@ -1,7 +1,7 @@
 {% extends "layout.html" %} {% block body %}
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-5 mt-3">
+        <div class="col-md-4 mt-3">
             <h3 class="fw-semibold">Menu</h3>
             <div class="overflow-y-auto p-3" style="max-height: calc(100vh - 120px);">
                 <div class="card border-info">
@@ -14,6 +14,264 @@
                               <button type="submit" class="btn btn-primary">Histogram</button>
                           </div>
                       </form>
+                    </div>
+                </div>
+                <div class="card border-info mt-3">
+                    <div class="card-header fw-semibold fs-5">
+                      Umum
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('normal') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Normal</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('grayscale') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Grayscale</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('zoomin') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Zoom In</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('zoomout') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Zoom Out</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-info mt-3">
+                    <div class="card-header fw-semibold fs-5">
+                        Filter Gambar
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('edge_detection') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Edge Detection</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('blur') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Blur</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('sharpening') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Sharpening</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('identity_filter') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Identity</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('blur2') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Blur 1/9</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('blur_cv') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Blur CV</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('gaussianblur_5') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Gaussian Blur 5</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('gaussianblur_25') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Gaussian Blur 25</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('median_5') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Median 5</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('median_25') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Median 25</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('sharp') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Sharp 2</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('bilateral_filter') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Bilateral</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('zero_padding') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Padding</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('lowpass_filter') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Lowpass</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('highpass_filter') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Highpass</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-2">
+                                    <form id="" action="{{ url_for('bandpass_filter') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary">Bandpass</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-info mt-3">
+                    <div class="card-header fw-semibold fs-5">
+                      Custom Filter
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="p-2">
+                                    <form id="oddNumberLow" action="{{ url_for('custom_lowpass_filter') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="p-2">
+                                            <h6>Kernel size</h6>
+                                            <input class="form-control" type="number" id="lowSize" name="size" placeholder="1" min="1">
+                                        </div>
+                                        <div class="p-2">
+                                            <div class="d-grid gap-2">
+                                                <button type="submit" class="btn btn-primary">Lowpass</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-2">
+                                    <form id="oddNumberHigh" action="{{ url_for('custom_highpass_filter') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="p-2">
+                                            <h6>Kernel size</h6>
+                                            <input class="form-control" type="number" id="highSize" name="size" placeholder="1" min="1">
+                                        </div>
+                                        <div class="p-2">
+                                            <div class="d-grid gap-2">
+                                                <button type="submit" class="btn btn-primary">Highpass</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-2">
+                                    <form id="oddNumberBand" action="{{ url_for('custom_bandpass_filter') }}" method="POST" enctype="multipart/form-data">
+                                        <div class="p-2">
+                                            <h6>Kernel size</h6>
+                                            <input class="form-control" type="number" id="bandSize" name="size" placeholder="1" min="1">
+                                        </div>
+                                        <div class="p-2">
+                                            <div class="d-grid gap-2">
+                                                <button type="submit" class="btn btn-primary">Bandpass</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card border-info mt-3">
@@ -58,47 +316,6 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="card border-info mt-3">
-                    <div class="card-header fw-semibold fs-5">
-                      Umum
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="p-2">
-                                    <form id="" action="{{ url_for('normal') }}" method="POST" enctype="multipart/form-data">
-                                        <div class="d-grid gap-2">
-                                            <button type="submit" class="btn btn-primary">Normal</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="p-2">
-                                    <form id="" action="{{ url_for('grayscale') }}" method="POST" enctype="multipart/form-data">
-                                        <div class="d-grid gap-2">
-                                            <button type="submit" class="btn btn-primary">Grayscale</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="p-2">
-                                    <form id="" action="{{ url_for('zoomin') }}" method="POST" enctype="multipart/form-data">
-                                        <div class="d-grid gap-2">
-                                            <button type="submit" class="btn btn-primary">Zoom In</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="p-2">
-                                    <form id="" action="{{ url_for('zoomout') }}" method="POST" enctype="multipart/form-data">
-                                        <div class="d-grid gap-2">
-                                            <button type="submit" class="btn btn-primary">Zoom Out</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -202,40 +419,6 @@
                 </div>
                 <div class="card border-info mt-3">
                     <div class="card-header fw-semibold fs-5">
-                        Filter Gambar
-                    </div>
-                    <div class="card-body row">
-                        <div class="col-md-5">
-                            <div class="p-2">
-                                <form id="" action="{{ url_for('edge_detection') }}" method="POST" enctype="multipart/form-data">
-                                    <div class="d-grid gap-2">
-                                        <button type="submit" class="btn btn-primary">Edge Detection</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="p-2">
-                                <form id="" action="{{ url_for('blur') }}" method="POST" enctype="multipart/form-data">
-                                    <div class="d-grid gap-2">
-                                        <button type="submit" class="btn btn-primary">Blur</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="p-2">
-                                <form id="" action="{{ url_for('sharpening') }}" method="POST" enctype="multipart/form-data">
-                                    <div class="d-grid gap-2">
-                                        <button type="submit" class="btn btn-primary">Sharpening</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card border-info mt-3">
-                    <div class="card-header fw-semibold fs-5">
                         Segmentation
                     </div>
                     <div class="card-body row">
@@ -264,7 +447,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-7 mt-3">
+        <div class="col-md-4 mt-3">
+            <h3 class="fw-semibold">Image Original</h3>
+            <div class="text-center">
+                <h5 id="imageSizeOri">Image Size: </h5>
+                <img class="img-fluid mt-2" src="{{ url_for('static', filename='/img/img_normal.jpg') }}" alt="image here">
+            </div>
+        </div>
+        <div class="col-md-4 mt-3">
             <h3 class="fw-semibold">Image Result</h3>
             <div class="text-center">
                 <h5 id="imageSize">Image Size: </h5>
@@ -275,10 +465,18 @@
 </div>
 
 <script>
-    // JavaScript function to display the image size
     function showImageSize() {
+            const imageOri = new Image();
+            imageOri.src = "static/img/img_normal.jpg"; 
+
+            imageOri.onload = function() {
+                const width = imageOri.width;
+                const height = imageOri.height;
+                const imageSizeOri = document.getElementById('imageSizeOri');
+                imageSizeOri.textContent = `Image size: ${width} x ${height}`;
+            };
             const image = new Image();
-            image.src = "static/img/img_now.jpg"; // Replace with the actual path
+            image.src = "static/img/img_now.jpg";
 
             image.onload = function() {
                 const width = image.width;
@@ -288,8 +486,35 @@
             };
         }
 
-    // Call the function to display the image size
     showImageSize();
+
+    document.getElementById("oddNumberLow").addEventListener("submit", function(event) {
+        var sizeInput = document.getElementById("lowSize");
+        var sizeValue = parseInt(sizeInput.value);
+
+        if (isNaN(sizeValue) || sizeValue % 2 === 0) {
+            event.preventDefault();
+            alert("Please enter an odd number for the size.");
+        }
+    });
+    document.getElementById("oddNumberHigh").addEventListener("submit", function(event) {
+        var sizeInput = document.getElementById("highSize");
+        var sizeValue = parseInt(sizeInput.value);
+
+        if (isNaN(sizeValue) || sizeValue % 2 === 0) {
+            event.preventDefault();
+            alert("Please enter an odd number for the size.");
+        }
+    });
+    document.getElementById("oddNumberBand").addEventListener("submit", function(event) {
+        var sizeInput = document.getElementById("bandSize");
+        var sizeValue = parseInt(sizeInput.value);
+
+        if (isNaN(sizeValue) || sizeValue % 2 === 0) {
+            event.preventDefault();
+            alert("Please enter an odd number for the size.");
+        }
+    });
 </script>
 
 {% endblock %}
